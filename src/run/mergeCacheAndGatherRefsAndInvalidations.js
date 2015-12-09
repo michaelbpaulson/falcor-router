@@ -29,9 +29,8 @@ function mergeCacheAndGatherRefsAndInvalidations(cache, jsongOrPVs) {
     // * There are references that need to be merged and potentially followed
     // * There are messages that can alter the behavior of the
     //   recurseMatchAndExecute cycle.
-    // * unhandledPaths, paths in which the route itself does not have the
-    //   ultimate answer to the path's existence. The route can only say that
-    //   it cannot handle this path.
+    // * unhandledPaths happens when a path matches a route but the route does
+    //   not match the entire path, therefore there is unmatched paths.
     jsongOrPVs.forEach(function(jsongOrPV) {
         var refsAndValues = [];
 

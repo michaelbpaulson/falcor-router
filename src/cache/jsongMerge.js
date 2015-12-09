@@ -26,12 +26,9 @@ module.exports = function jsongMerge(cache, jsongEnv) {
         },  cache, j, 0, p);
     });
 
-    // we simply just transplant the unhandledPaths from the jsonGraph
-    // envelope to the return value of this function.
     return {
         references: references,
-        values: values,
-        unhandledPaths: jsongEnv.unhandledPaths
+        values: values
     };
 };
 
@@ -92,8 +89,7 @@ function merge(config, cache, message, depth, path, fromParent, fromKey) {
         var messageRes = message[key];
 
         // We no longer materialize inside of jsonGraph merge.  Either the
-        // client should specify all of the paths, or unhandledPaths should be
-        // used.
+        // client should specify all of the paths
         if (messageRes !== undefined) {
 
             var nextPath = path;

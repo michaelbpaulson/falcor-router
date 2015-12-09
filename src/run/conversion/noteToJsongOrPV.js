@@ -56,8 +56,7 @@ function convertNoteToJsongOrPV(matchAndPath, note) {
         // as the paths.
         incomingJSONGOrPathValues = {
             jsonGraph: incomingJSONGOrPathValues.jsonGraph,
-            paths: [matchAndPath.path],
-            unhandledPaths: incomingJSONGOrPathValues.unhandledPaths
+            paths: [matchAndPath.path]
         };
     }
 

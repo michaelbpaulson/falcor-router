@@ -12,6 +12,22 @@ var sinon = require('sinon');
 
 describe('Get', function() {
 
+    it('should call the onUnhandledGet when the route completely misses a route.', function(done) {
+        var router = new R([]);
+        var onUnhandledPaths = sinon.spy();
+        router.onUnhandledGet(onUnhandledPaths);
+
+        var obs = router.
+            get([['videos', 'summary']]);
+        var onNext = sinon.spy();
+        obs.
+            doAction(onNext, noOp, function() {
+                expect(onNext.calledOnce).to.be.ok;
+                expect(onNext.getArgs
+            }).
+            subscribe(noOp, done, done);
+    });
+
     it('should execute a simple route matching.', function(done) {
         var router = new R(Routes().Videos.Summary());
         var obs = router.

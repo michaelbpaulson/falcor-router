@@ -31,8 +31,7 @@ describe('JSONG - Merge', function() {
                 path: ['there', 'is'],
                 value: $atom('a value')
             }],
-            references: [],
-            unhandledPaths: undefined
+            references: []
         });
     });
 
@@ -53,8 +52,7 @@ describe('JSONG - Merge', function() {
                 path: ['there', 'is'],
                 value: 0
             }],
-            references: [],
-            unhandledPaths: undefined
+            references: []
         });
     });
 
@@ -75,8 +73,7 @@ describe('JSONG - Merge', function() {
                 path: ['there', 'is'],
                 value: ''
             }],
-            references: [],
-            unhandledPaths: undefined
+            references: []
         });
     });
 
@@ -97,8 +94,7 @@ describe('JSONG - Merge', function() {
                 path: ['there', 'is'],
                 value: false
             }],
-            references: [],
-            unhandledPaths: undefined
+            references: []
         });
     });
 
@@ -119,8 +115,7 @@ describe('JSONG - Merge', function() {
                 path: ['there', 'is'],
                 value: null
             }],
-            references: [],
-            unhandledPaths: undefined
+            references: []
         });
     });
 
@@ -187,8 +182,7 @@ describe('JSONG - Merge', function() {
             references: [{
                 path: ['there', 'is'],
                 value: ['a']
-            }],
-            unhandledPaths: undefined
+            }]
         });
     });
 
@@ -218,27 +212,7 @@ describe('JSONG - Merge', function() {
             references: [{
                 path: ['there', 'was'],
                 value: ['b']
-            }],
-            unhandledPaths: undefined
-        });
-    });
-
-    it('should ensure that jsonGraphMerge will transfer unhandledPaths.', function() {
-        var jsonGraph = {
-            jsonGraph: {},
-            paths: [],
-            unhandledPaths: [
-                ['ohh', 'no']
-            ]
-        };
-        var cache = {};
-        var out = jsongMerge(cache, jsonGraph);
-        expect(out).to.deep.equals({
-            values: [],
-            references: [],
-            unhandledPaths: [
-                ['ohh', 'no']
-            ]
+            }]
         });
     });
 });

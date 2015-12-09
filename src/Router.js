@@ -42,17 +42,12 @@ Router.prototype = {
         var action = runGetAction(this, jsongCache);
         var normPS = normalizePathSets(paths);
         return run(this._matcher, action, normPS, get, this, jsongCache).
+
+            // Turn it(jsongGraph, invalidations, missing, etc.) into a jsonGraph envelope
             map(function(details) {
                 var out = {
                     jsonGraph: details.jsonGraph
                 };
-
-                if (details.unhandledPaths.length) {
-                    out.unhandledPaths = details.unhandledPaths;
-                    if (out.unhandledPaths.length > 1) {
-                        out.unhandledPaths = collapse(out.unhandledPaths);
-                    }
-                }
 
                 return out;
             });
@@ -63,9 +58,9 @@ Router.prototype = {
         var jsongCache = {};
         var action = runSetAction(this, jsong, jsongCache);
         return run(this._matcher, action, jsong.paths, set, this, jsongCache).
+
+            // Turn it(jsongGraph, invalidations, missing, etc.) into a jsonGraph envelope
             map(function(details) {
-                // Set does not have unhandled paths.  There is no cascading
-                // a set from one source to another.
                 return {
                     jsonGraph: details.jsonGraph
                 };
@@ -99,13 +94,6 @@ Router.prototype = {
                 var invalidated = jsongResult.invalidated;
                 if (invalidated && invalidated.length) {
                     jsongEnv.invalidated = invalidated;
-                }
-
-                // Call can still produce unhandledPaths since the follow-up
-                // suffix and paths will produce the paths.
-                var unhandledPaths = jsongResult.unhandledPaths;
-                if (unhandledPaths && unhandledPaths.length) {
-                    jsongEnv.unhandledPaths = unhandledPaths;
                 }
 
                 return jsongEnv;

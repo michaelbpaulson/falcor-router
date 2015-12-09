@@ -10,18 +10,11 @@ module.exports = function pathValueMerge(cache, pathValue) {
     var refs = [];
     var values = [];
     var invalidations = [];
-    var unhandledPaths = [];
     var valueType = true;
 
     // The pathValue invalidation shape.
     if (pathValue.invalidated === true) {
         invalidations.push({path: pathValue.path});
-        valueType = false;
-    }
-
-    // The path was unable to be handled by the route.
-    else if (pathValue.unhandled === true) {
-        unhandledPaths.push(pathValue.path);
         valueType = false;
     }
 
@@ -48,8 +41,7 @@ module.exports = function pathValueMerge(cache, pathValue) {
     return {
         references: refs,
         values: values,
-        invalidations: invalidations,
-        unhandledPaths: unhandledPaths
+        invalidations: invalidations
     };
 };
 
